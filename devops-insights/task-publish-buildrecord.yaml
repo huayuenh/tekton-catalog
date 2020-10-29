@@ -52,28 +52,6 @@ spec:
       env:
         - name: IBM_CLOUD_API
           value: $(params.ibmcloud-api)
-        - name: IBM_CLOUD_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: $(params.continuous-delivery-context-secret)
-              key: $(params.toolchain-apikey-secret-key)
-              optional: true
-        - name: APP_NAME
-          value: $(params.app-name)
-        - name: TOOLCHAIN_ID
-          value: $(params.toolchain-id)
-        - name: BUILD_NUMBER
-          value: $(params.build-number)
-        - name: BUILD_STATUS
-          value: $(params.build-status)
-        - name: GIT_URL
-          value: $(params.git-repository)
-        - name: GIT_BRANCH
-          value: $(params.git-branch)
-        - name: GIT_COMMIT
-          value: $(params.git-commit)
-        - name: JOB_URL
-          value: $(params.job-url)
       script: |
         #!/bin/bash
         set -e -o pipefail
