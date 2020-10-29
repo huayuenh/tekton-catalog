@@ -39,6 +39,7 @@ spec:
     - name: pipeline-debug
       description: Pipeline debug mode
       default: "0"
+    - name: test
   results:
     - name: build-number
       description: Devops Insights build number reference used
@@ -52,6 +53,8 @@ spec:
       env:
         - name: IBM_CLOUD_API
           value: $(params.ibmcloud-api)
+        - name: VALUE
+          value: $(params.test)
       script: |
         #!/bin/bash
         set -e -o pipefail
@@ -63,6 +66,7 @@ spec:
             set -x
         fi
         echo "RUNNING"
+        echo "VALUE $VALUE"
       volumeMounts:
         - mountPath: /cd-config
           name: cd-config-volume
