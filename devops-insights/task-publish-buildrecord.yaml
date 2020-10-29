@@ -120,9 +120,9 @@ spec:
 
         export TOOLCHAIN_ID=${TOOLCHAIN_ID} # for doi plugin
         ibmcloud login --apikey ${IBM_CLOUD_API_KEY} -a ${IBM_CLOUD_API} --no-region
-        ibmcloud doi publishbuildrecord --logicalappname="${APP_NAME}" --buildnumber=${BUILD_NUMBER} \
-          --branch=${GIT_BRANCH} --repositoryurl=${GIT_URL} --commitid=${GIT_COMMIT} \
-          --status=${BUILD_STATUS} --joburl="$JOB_URL"
+        #ibmcloud doi publishbuildrecord --logicalappname="${APP_NAME}" --buildnumber=${BUILD_NUMBER} \
+        #  --branch=${GIT_BRANCH} --repositoryurl=${GIT_URL} --commitid=${GIT_COMMIT} \
+        #  --status=${BUILD_STATUS} --joburl="$JOB_URL"
 
         # Record task results
         echo -n "${BUILD_NUMBER}" > $(results.build-number.path)
