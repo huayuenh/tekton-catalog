@@ -74,14 +74,6 @@ spec:
           value: $(params.git-commit)
         - name: JOB_URL
           value: $(params.job-url)
-        - name: PIPELINE_RUN_URL
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.annotations['devops.cloud.ibm.com/pipeline-run-url']
-        - name: DEFAULT_BUILD_NUMBER
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.annotations['devops.cloud.ibm.com/build-number']
       script: |
         #!/bin/bash
         set -e -o pipefail
