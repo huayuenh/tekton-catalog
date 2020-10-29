@@ -6,17 +6,24 @@ metadata:
 spec:
   params:
     - name: value
-    - name: condition
-      default: '='
+      default: 'true'
     - name: expected
       default: 'true'
-  check:
-    image: alpine
-    command: ["/bin/sh", "-c"]
-    args:
-      - |
-        if [ "$(params.value)" $(params.condition) "$(params.expected)" ]; then
-          exit 0
-        else
-          exit 1
-        fi
+  steps:
+    env:
+      - name: RESULT
+        value: $(params.value)
+      - name: EXPECTED_RESULT
+        value: $(params.expected)
+    image: ibmcom/pipeline-base-image:2.6
+    script: |
+        #!/usr/bin/env python3
+        import os
+        exit_code = 0
+        if os.getenv("RESULT") != os.getenv("EXPECTED_RESULT"):
+          print("RESULT '" + os.getenv("RESULT") + "' does not match '" + os.getenv("RESEXPECTED_RESULTULT") + "'")
+          print("The actual result value did not match expected value.")
+          exit_code = 1
+        if exit_code == 0:
+          print("Every Task result passed the check!")
+        exit(exit_code)
