@@ -46,7 +46,8 @@ spec:
           fi
 
           jq $([ "$RAW" == 1 ] && echo -r) '$(params.expression)' /cd-config/$(params.config-map-key) | tr -d '\n' | tee $(results.extracted-value.path)
-
+          echo "*************"
+          cat /cd-config/$(params.config-map-key)
           file_size=$(du -b $(results.extracted-value.path) | awk '{print $1}')
           file_lines=$(wc -l $(results.extracted-value.path) | awk '{print $1}')
 
